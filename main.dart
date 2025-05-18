@@ -12,8 +12,10 @@ class BMICalculatorApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'AgeoTrial',
       ),
       home: LoginPage(), // Start with the login page
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -48,28 +50,134 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        backgroundColor: Colors.transparent, // 1. Make AppBar transparent
+        elevation: 0, // Remove shadow from AppBar
+        title: Text(
+          'BMI Calculator',
+          style: TextStyle(
+            fontFamily: 'AgeoTrial',
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            color: const Color.fromARGB(
+                255, 9, 1, 1), // Ensure title text is visible
+          ), // This closes the TextStyle
+        ), // This closes the Text widget
+        centerTitle: true, // This is now correctly an AppBar property
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/bgimage/BMI.jpg"), // 2. Set your image path (use forward slashes)
+            fit: BoxFit.cover, // 3. Cover the whole screen
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Container(
+          // Add this container for the overlay
+          color: Colors.white.withOpacity(
+              0.3), // Adjust opacity (0.0 to 1.0) for desired lightness
+          child: Padding(
+            // The original Padding widget is now a child of this new Container
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                // Optional: Add a logo here if you have one
+                // Image.asset('assets/images/logo.png', height: 100),
+                // SizedBox(height: 30),
+                TextField(
+                  controller: _usernameController,
+                  style: TextStyle(
+                    // Style for the input text
+                    fontFamily: 'AgeoTrial',
+                    fontSize: 18,
+                    color: Colors
+                        .black87, // Or Colors.white if your fill is darker
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    labelStyle: TextStyle(
+                        fontFamily: 'AgeoTrial',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black54), // Adjust color as needed
+                    hintText: 'Enter your username',
+                    hintStyle: TextStyle(color: Colors.black38),
+                    prefixIcon:
+                        Icon(Icons.person_outline, color: Colors.black54),
+                    filled: true,
+                    fillColor: Colors.white
+                        .withOpacity(0.5), // Semi-transparent white fill
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide.none, // No border for a cleaner look
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor, width: 2),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  style: TextStyle(
+                    // Style for the input text
+                    fontFamily: 'AgeoTrial',
+                    fontSize: 18,
+                    color: Colors
+                        .black87, // Or Colors.white if your fill is darker
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                        fontFamily: 'AgeoTrial',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black54), // Adjust color as needed
+                    hintText: 'Enter your password',
+                    hintStyle: TextStyle(color: Colors.black38),
+                    prefixIcon: Icon(Icons.lock_outline, color: Colors.black54),
+                    filled: true,
+                    fillColor: Colors.white
+                        .withOpacity(0.5), // Semi-transparent white fill
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor, width: 2),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    textStyle: TextStyle(
+                      fontFamily: 'AgeoTrial',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    elevation: 5, // Add a subtle shadow
+                  ),
+                  child: Text('Login', style: TextStyle(color: Colors.white)),
+                ),
+              ],
             ),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _login,
-              child: Text('Login'),
-            ),
-          ],
+          ),
         ),
       ),
     );

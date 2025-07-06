@@ -113,18 +113,24 @@ class WalletScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 24),
-                        OutlinedButton.icon(
-                          onPressed: () {},
-                          icon: Image.network(
-                              'https://cdn-icons-png.flaticon.com/128/2169/2169864.png',
-                              height: 20,
-                              width: 20,
-                              color: Colors.black),
-                          label: Text(
-                            'Create New Wallet',
-                            style: GoogleFonts.poppins(
-                                textStyle:
-                                    const TextStyle(color: Colors.black)),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: OutlinedButton.icon(
+                            onPressed: () {},
+                            icon: Image.network(
+                                'https://cdn-icons-png.flaticon.com/128/2169/2169864.png',
+                                height: 20,
+                                width: 20,
+                                color: Colors.black),
+                            label: Text(
+                              'Create New Wallet',
+                              style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black)),
+                            ),
                           ),
                         ),
                       ],

@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:flutter_application_1/WalletDetailsScreen.dart';
+import 'package:flutter_application_1/WalletScreen.dart';
+import 'package:flutter_application_1/wallet_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,8 +47,7 @@ class MyWalletPage extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => const WalletDetailsScreen()),
+            MaterialPageRoute(builder: (context) => WalletScreen()),
           );
         },
       )),
@@ -685,8 +685,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const WalletDetailsScreen()));
+                              builder: (context) => WalletScreen()));
                     },
                   ),
                   ListTile(
